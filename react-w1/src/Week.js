@@ -2,11 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Week = (props) => {
+const Week = () => {
   let navigate = useNavigate();
+
   let days = ["월", "화", "수", "목", "금", "토", "일"];
   const [count, setCount] = React.useState(days.length);
   const day_count = Array.from({ length: count }, (v, i) => i);
+
+  let circles = [1,2,3,4,5];
+  const [circle, setCircle] = React.useState(circles.length);
+  const circle_count = Array.from({ length: circle }, (v, j) => j);
+
   return (
     <Point>
       <h2>내 일주일은?</h2>
@@ -15,11 +21,9 @@ const Week = (props) => {
         return (
           <div key={i}>
             <h3>{day}</h3>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
-            <div className="circle"></div>
+            {circle_count.map((cir, j) => {
+              return <div key={j} className="circle"></div>;
+            })}
             <div
               className="triangle"
               onClick={() => {
