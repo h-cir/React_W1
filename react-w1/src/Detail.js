@@ -7,13 +7,8 @@ const Detail = () => {
   let navigate = useNavigate();
   const { day } = useParams();
 
-  //땡그래미 5개만들기
-  let circles = [1, 2, 3, 4, 5];
-  const [circle, setCircle] = React.useState(circles.length);
-  const circle_count = Array.from({ length: circle }, (v, i) => i);
-
   // 평점 찍기
-  const [clicked, setClicked] = React.useState([false,false,false,false,false]);
+  const [clicked, setClicked] = React.useState([,,,,]);
   const handleClick = (e, index) => {
     e.preventDefault();
     let clickStates = [...clicked];
@@ -22,15 +17,15 @@ const Detail = () => {
       else clickStates[i] = false;
     }
     setClicked(clickStates);
-    console.log(clicked);
   }; 
+
   return (
     <DetailBody>
       <h3>
         <span>{day}요일</span> 평점 남기기
       </h3>
       <div> 
-        {circle_count.map((v, i) => {
+        {Array.from({ length: 5 },(v, i) => {
           return (
             <div key={i}  onClick={(e) => handleClick(e,i)}
             className={clicked[i] ? "clickedCircle" : "circle"}></div> //클래스는 문자열이라 쌍따옴표에 넣어야 했음 ㅠㅠㅠㅠㅠ 성공쓰!
@@ -71,7 +66,7 @@ const DetailBody = styled.div`
   .clickedCircle {
     width: 30px;
     height: 30px;
-    background: rgb(212, 180, 0);
+    background: #ffe650;
     border-radius: 50%;
     margin: 5px;
     cursor: pointer;
